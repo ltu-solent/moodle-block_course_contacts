@@ -36,13 +36,22 @@ class simple_email_form extends moodleform {
         $mailto = $this->_customdata['mailto'];
         $touid = $this->_customdata['touid'];
 
-        $context = get_context_instance(CONTEXT_COURSE, $COURSE->id);
+// SSU_AMEND START - COURSE CONTACTS BLOCK 
+        //$context= get_context_instance(CONTEXT_COURSE, $COURSE->id);
+        $context= context_COURSE::instance($COURSE->id);
+// SSU_AMEND END
 
         $mform->addElement('header', 'simpleemail_topsection',
         get_string('sendanemail', 'block_course_contacts'));
 
         $mform->addElement('hidden', 'mailto', $mailto);
+// SSU_AMEND START - COURSE CONTACTS BLOCK 
+		$mform->setType('mailto', PARAM_TEXT);
+// SSU_AMEND END
         $mform->addElement('hidden', 'cid', $COURSE->id);
+// SSU_AMEND START - COURSE CONTACTS BLOCK 
+		$mform->setType('cid', PARAM_TEXT);
+// SSU_AMEND END
         $mform->addElement('static', 'emailinfo', '',
             str_replace('{recipient}', strtolower($mailto),
             get_string('emailinfo', 'block_course_contacts')));

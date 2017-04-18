@@ -194,9 +194,15 @@ class block_course_contacts extends block_base {
                     // Because the role search finds the custom name and the proper name in brackets.
                     if (!empty($contacts)) {
                         if ($shortened = strstr($role, '(', true)) {
-                            $content .= html_writer::tag('h2', trim($shortened));
+// SSU_AMEND START
+							//$content .= html_writer::tag('h2', trim($shortened));
+							$content .= html_writer::tag('h5', trim($shortened), array('class'=>'contact-role'));
+// SSU_AMEND END
                         } else {
-                            $content .= html_writer::tag('h2', $role);
+// SSU_AMEND START
+							//$content .= html_writer::tag('h2', $role);
+							$content .= html_writer::tag('h5', $role, array('class'=>'contact-role'));
+// SSU_AMEND END
                         }
                     }
                     // Now display each contact.
@@ -232,7 +238,10 @@ class block_course_contacts extends block_base {
                                     // $url = new moodle_url('/blocks/course_contacts/email.php', array(
                                         // 'touid' => $contact->id, 'cid'=>$COURSE->id));
                                 // } else {
-                                    $url = 'mailto:'.strtolower($contact->email);
+// SSU_AMEND START									
+									//$url = 'mailto:'.strtolower($contact->email);
+									$url = new moodle_url('/blocks/course_contacts/email.php', array('touid'=>$contact->id, 'cid'=>$COURSE->id));
+// SSU_AMEND END				
                                 // }
                                 $content .= html_writer::link($url, html_writer::empty_tag('img', array(
                                     'src' => $OUTPUT->pix_url('mail', 'block_course_contacts'),
@@ -267,6 +276,95 @@ class block_course_contacts extends block_base {
                 }
             }
         }
+		
+// SSU_AMEND START - COURSE CONTACTS BLOCK						
+		$content .= html_writer::empty_tag('hr');
+		//Librarians
+		$category = $DB->get_record('course_categories', array('id'=>$COURSE->category)); 
+		
+		$hannah = array('ACC','AFE','BIG','BIS','BUS','CCA','CHI','CPP','CPU','CRI','ECO','ENG','EOT','EUR','FRE','GER','HCR','HRM','ITA','ITE','LAC','LAW','MAN','SPA','STR','TEF','TOU');
+		$kathryn = array('AAP','ACO','CDA','CEN','CGP','CMP','CNP','COM','CUP','DAC','FIL','FMM','FTU','ISM','MAA','MCP','MED','MFT','MIC','MDM','MMM','MMR','MPM','MUS','NSM','OBP','SAD','SWD','TES','VCA');
+		$kate = array('CPU','HES','HHS','HPS','HSW','PSY','SSC','SPO','SPT','SRS','SSP');
+		$celia = array('ECT','EDB','EEN','EGP','EMA','EME','EMS','ENV','IMS','MAC','MAM','MAR','MCO','MFC','MSO','PRJ','QTM','TFP','WDD','WEE','WEM','WSO','YEP','WCD','WDB','WDF','WSQ');
+		$mary = array('AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
+		$susan = array('ARC','AVC','BPC','CON','DBE','DES','FAD','FAM','FFD','FMP','FMS','GRD','ICD','INT','MFS','MIT','PDM','SUR','TBE','VIC','VPF');
+		$fiona = array('EDU','PDU','FHEA');
+		$share = array('LEI');						
+		
+		if($category->name == 'Unit Pages'){
+			$code = substr($COURSE->shortname, 0, 3);
+			$librarian_name = "";
+			$librarian_link = "";
+			$no_librarians = 0;
+			
+			if (in_array($code, $hannah)) {
+				$librarian_name = "Hannah Porter";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/hannah-porter.aspx";	
+				$no_librarians	= 1;
+			}elseif(in_array($code, $kathryn)) {
+				$librarian_name = "Kathryn Ballard";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/kathryn-ballard.aspx";
+				$no_librarians	= 1;
+			}elseif(in_array($code, $kate)) {
+				$librarian_name = "Kate Stephenson";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/kate-stephenson.aspx";
+				$no_librarians	= 1;
+			}elseif(in_array($code, $celia)) {
+				$librarian_name = "Celia Forrester";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/celia-forrester.aspx";
+				$no_librarians	= 1;
+			}elseif(in_array($code, $mary)) {
+				$librarian_name = "Mary Hudson";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/mary-hudson.aspx";
+				$no_librarians	= 1;
+			}elseif(in_array($code, $susan)) {
+				$librarian_name = "Susan Taylor";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/susan-taylor.aspx";
+				$no_librarians	= 1;
+			}elseif(in_array($code, $fiona)) {
+				$librarian_name = "Fiona Mckichan";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/fiona-mckichan.aspx";
+				$no_librarians	= 1;
+			}elseif(in_array($code, $share)) {
+				$librarian_name = "Hannah Porter";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/hannah-porter.aspx";
+				$librarian_name2 = "Kate Stephenson";
+				$librarian_link2 = "http://portal.solent.ac.uk/library/essential-info/meet-team/kate-stephenson.aspx";
+				$no_librarians	= 2;
+			}
+
+			if($no_librarians == 1){
+				$librarian = $content .= html_writer::start_span('librarian') . 'Librarian: ' . html_writer::end_span();
+				$content .= html_writer::link($librarian_link, $librarian_name, array('target'=>'_blank'));
+			}elseif($no_librarians == 2){
+				$librarian = $content .= html_writer::start_span('librarian') . 'Librarians: ' . html_writer::end_span();
+				$content .= html_writer::link($librarian_link, $librarian_name, array('target'=>'_blank'));
+				$content .= ", ";
+				$content .= html_writer::link($librarian_link2, $librarian_name2, array('target'=>'_blank'));
+			}else{
+				$to      = 'ltu@solent.ac.uk';
+				$subject = 'No librarian listed for ' . $COURSE->shortname;
+				$message = 'There is currently no librarian listed for '. $COURSE->shortname . "\r\n";
+				$message .= 'Please let Roger know so he can liaise with the library team ';
+				$headers = 'From: noreply@learn.ac.uk' . "\r\n" .
+					'X-Mailer: PHP/' . phpversion();
+
+				//mail($to, $subject, $message, $headers);
+			}
+			
+			$content .= html_writer::empty_tag('br');
+		}					
+		
+		// All participants
+		$participants_url = '/user/index.php?id='. $COURSE->id;
+		$content .= html_writer::link($participants_url, 'All participants');
+		$content .= html_writer::empty_tag('br');
+		//External examiners
+		$coursecode = substr($COURSE->shortname, 0, strpos($COURSE->shortname, "_"));
+		$external_url = $CFG->wwwroot ."/mod/data/view.php?d=159&mode=list&perpage=10&search=&sort=772&order=ASC&advanced=0&filter=1&advanced=1&f_772=&f_773=&f_774=&f_775=" . $coursecode;
+		$content .= html_writer::link($external_url, 'External examiners', array('target'=>'_blank'));						
+// SSU_AMEND END
+
         $content .= html_writer::end_tag('div');
 
         $this->content->text = $content;

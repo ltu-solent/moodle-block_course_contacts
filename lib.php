@@ -36,7 +36,10 @@ function quickmail_cleanup($table, $itemid) {
     // Clean up the files associated with this email.
     if ($courseid = $DB->get_field($table, 'courseid', array('id' => $itemid))) {
         $fs = get_file_storage();
-        $context = get_context_instance(CONTEXT_COURSE, $courseid);
+// SSU_AMEND START - COURSE CONTACTS BLOCK 
+        //$context = get_context_instance(CONTEXT_COURSE, $courseid);
+        $context = context_COURSE::instance($courseid);
+// SSU_AMEND END
         $files = $fs->get_area_files($context->id, $table, 'attachment', $itemid, 'id');
         foreach ($files as $file) {
             $file->delete();
@@ -90,7 +93,10 @@ function quickmail_process_attachments($context, $email, $table, $id) {
 function quickmail_attachment_names($draft) {
     global $USER;
 
-    $usercontext = get_context_instance(CONTEXT_USER, $USER->id);
+// SSU_AMEND START - COURSE CONTACTS BLOCK 
+    //$usercontext = get_context_instance(CONTEXT_USER, $USER->id);
+    $usercontext =  context_USER::instance($USER->id);
+// SSU_AMEND END
 
     $fs = get_file_storage();
     $files = $fs->get_area_files($usercontext->id, 'user', 'draft', $draft, 'id');
