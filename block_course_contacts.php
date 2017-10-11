@@ -291,11 +291,11 @@ class block_course_contacts extends block_base {
 		//Librarians
 		$category = $DB->get_record('course_categories', array('id'=>$COURSE->category)); 
 		
-		$hannah = array('ACC','AFE','BIG','BIS','BUS','CCA','CHI','CPP','CPU','CRI','ECO','ENG','EOT','EUR','FRE','GER','HCR','HRM','ITA','ITE','LAC','LAW','MAN','SPA','STR','TEF','TOU');
+		$hannah = array('ACC','AFE','BIG','BIS','BUS','CCA','CHI','CPP','CPU','CRI','ECO','ENG','EOT','EUR','FRE','GER','HCR','HRM','ITA','ITE','LAC','LAW','MAN','SPA','STR','TEF','TOU','AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
 		$kathryn = array('AAP','ACO','CDA','CEN','CGP','CMP','CNP','COM','CUP','DAC','FIL','FMM','FTU','ISM','MAA','MCP','MED','MFT','MIC','MDM','MMM','MMR','MPM','MUS','NSM','OBP','SAD','SWD','TES','VCA');
 		$kate = array('CPU','HES','HHS','HPS','HSW','PSY','SSC','SPO','SPT','SRS','SSP');
 		$celia = array('ECT','EDB','EEN','EGP','EMA','EME','EMS','ENV','IMS','MAC','MAM','MAR','MCO','MFC','MSO','PRJ','QTM','TFP','WDD','WEE','WEM','WSO','YEP','WCD','WDB','WDF','WSQ');
-		$mary = array('AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
+		//$mary = array('AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
 		$susan = array('ARC','AVC','BPC','CON','DBE','DES','FAD','FAM','FFD','FMP','FMS','GRD','ICD','INT','MFS','MIT','PDM','SUR','TBE','VIC','VPF');
 		$fiona = array('EDU','PDU','FHEA');
 		$share = array('LEI');						
@@ -322,10 +322,10 @@ class block_course_contacts extends block_base {
 				$librarian_name = "Celia Forrester";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/celia-forrester.aspx";
 				$no_librarians	= 1;
-			}elseif(in_array($code, $mary)) {
-				$librarian_name = "Mary Hudson";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/mary-hudson.aspx";
-				$no_librarians	= 1;
+			// }elseif(in_array($code, $mary)) {
+				// $librarian_name = "Mary Hudson";
+				// $librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/mary-hudson.aspx";
+				// $no_librarians	= 1;
 			}elseif(in_array($code, $susan)) {
 				$librarian_name = "Susan Taylor";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/susan-taylor.aspx";
