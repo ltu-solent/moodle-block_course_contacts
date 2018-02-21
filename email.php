@@ -85,7 +85,11 @@ if ($form->is_cancelled()) {
     $result = false;
 
     if ($data->mailto == $mailto->email && $data->cid == $courseid) {
-		$result = email_to_user($mailto, $USER, $email->subject, strip_tags($email->message), $email->message, NULL, NULL, NULL, $USER->email, NULL, NULL);
+// SSU_AMEND START - ADD STUDENT REPLY TO ADDRESS
+         //$result = email_to_user($mailto, $USER, $email->subject, strip_tags($email->message), $email->message);
+        $result = email_to_user($mailto, $USER, $email->subject, strip_tags($email->message),
+            $email->message, null, null, null, $USER->email, null, null);
+// SSU_AMEND END
     } else {
         // debugging($data->mailto.' == '.$mailto->email);
         // debugging($data->cid.' == '.$courseid);
