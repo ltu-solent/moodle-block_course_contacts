@@ -194,12 +194,12 @@ class block_course_contacts extends block_base {
                     // Because the role search finds the custom name and the proper name in brackets.
                     if (!empty($contacts)) {
                         if ($shortened = strstr($role, '(', true)) {
-// SSU_AMEND START
+// SSU_AMEND START - ADD CLASS TO H5 TAG
 							//$content .= html_writer::tag('h5', trim($shortened));
 							$content .= html_writer::tag('h5', trim($shortened), array('class'=>'contact-role'));
 // SSU_AMEND END
                         } else {
-// SSU_AMEND START
+// SSU_AMEND START - ADD CLASS TO H5 TAG
 							//$content .= html_writer::tag('h5', $role);
 							$content .= html_writer::tag('h5', $role, array('class'=>'contact-role'));
 // SSU_AMEND END
@@ -295,18 +295,18 @@ class block_course_contacts extends block_base {
 		$kathryn = array('AAP','ACO','CDA','CEN','CGP','CMP','CNP','COM','CUP','DAC','FIL','FMM','FTU','ISM','MAA','MCP','MED','MFT','MIC','MDM','MMM','MMR','MPM','MUS','NSM','OBP','SAD','SWD','TES','VCA');
 		$kate = array('CPU','HES','HHS','HPS','HSW','PSY','SSC','SPO','SPT','SRS','SSP');
 		$celia = array('ECT','EDB','EEN','EGP','EMA','EME','EMS','ENV','IMS','MAC','MAM','MAR','MCO','MFC','MSO','PRJ','QTM','TFP','WDD','WEE','WEM','WSO','YEP','WCD','WDB','WDF','WSQ');
-		//$mary = array('AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
 		$susan = array('ARC','AVC','BPC','CON','DBE','DES','FAD','FAM','FFD','FMP','FMS','GRD','ICD','INT','MFS','MIT','PDM','SUR','TBE','VIC','VPF');
 		$fiona = array('EDU','PDU','FHEA');
-		$share = array('LEI');						
+		$share = array('LEI');	
 		
 		if($category->name == 'Unit Pages'){
 			$code = substr($COURSE->shortname, 0, 3);
+			$code2 = substr($COURSE->shortname, 0, 6);
 			$librarian_name = "";
 			$librarian_link = "";
 			$no_librarians = 0;
-			
-			if (in_array($code, $hannah)) {
+		
+			if (in_array($code, $hannah) || $code2 == "SPT014") {
 				$librarian_name = "Hannah Porter";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/hannah-porter.aspx";	
 				$no_librarians	= 1;
@@ -322,10 +322,6 @@ class block_course_contacts extends block_base {
 				$librarian_name = "Celia Forrester";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/celia-forrester.aspx";
 				$no_librarians	= 1;
-			// }elseif(in_array($code, $mary)) {
-				// $librarian_name = "Mary Hudson";
-				// $librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/mary-hudson.aspx";
-				// $no_librarians	= 1;
 			}elseif(in_array($code, $susan)) {
 				$librarian_name = "Susan Taylor";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/susan-taylor.aspx";
