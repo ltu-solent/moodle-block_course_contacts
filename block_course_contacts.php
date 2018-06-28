@@ -242,7 +242,16 @@ class block_course_contacts extends block_base {
                         if ($USER->id != $contact->id) {
                             // Should we display email?
                             if ($this->config->email == 1) {
-                                $url = 'mailto:'.strtolower($contact->email);
+                                // RO - removed, causing errors, retained for dev
+                                // if ($CFG->block_co_co_simpleemail) {
+                                    // $url = new moodle_url('/blocks/course_contacts/email.php', array(
+                                        // 'touid' => $contact->id, 'cid'=>$COURSE->id));
+                                // } else {
+// SSU_AMEND START
+									//$url = 'mailto:'.strtolower($contact->email);
+									$url = new moodle_url('/blocks/course_contacts/email.php', array('touid'=>$contact->id, 'cid'=>$COURSE->id));
+// SSU_AMEND END
+                                // }
                                 $content .= html_writer::link($url, html_writer::empty_tag('img', array(
                                     'src' => $OUTPUT->image_url('mail', 'block_course_contacts'),
                                     'title' => get_string('email', 'block_course_contacts').' '.$contact->firstname,
