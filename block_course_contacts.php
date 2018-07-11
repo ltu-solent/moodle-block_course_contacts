@@ -280,7 +280,8 @@ class block_course_contacts extends block_base {
 
                         $content .= html_writer::end_tag('div');
                         $content .= html_writer::end_tag('div');
-                        if ($this->config->description == 1 && $contact->description != "") {
+
+                        if (isset($this->config->description) == 1 && $contact->description != "") {
                             $content .= html_writer::start_tag('div', array('class' => 'description'));
                             $content .= substr(format_text($contact->description, FORMAT_HTML), 0, 199);
                             $content .= html_writer::end_tag('div');
