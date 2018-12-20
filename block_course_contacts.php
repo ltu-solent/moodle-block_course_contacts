@@ -281,11 +281,11 @@ class block_course_contacts extends block_base {
                         $content .= html_writer::end_tag('div');
                         $content .= html_writer::end_tag('div');
 
-                        if (isset($this->config->description) == 1 && $contact->description != "") {
-                            $content .= html_writer::start_tag('div', array('class' => 'description'));
-                            $content .= substr(format_text($contact->description, FORMAT_HTML), 0, 199);
-                            $content .= html_writer::end_tag('div');
-                        }
+                        // if (isset($this->config->description) == 1 && $contact->description != "") {
+                        //     $content .= html_writer::start_tag('div', array('class' => 'description'));
+                        //     $content .= substr(format_text($contact->description, FORMAT_HTML), 0, 199);
+                        //     $content .= html_writer::end_tag('div');
+                        // }
                         $content .= html_writer::end_tag('div');
                     }
                 }
@@ -297,7 +297,7 @@ class block_course_contacts extends block_base {
 		//Librarians
 		$category = $DB->get_record('course_categories', array('id'=>$COURSE->category));
 
-		$hannah = array('ACC','AFE','BIG','BIS','BUS','CCA','CHI','CPP','CPU','CRI','ECO','ENG','EOT','EUR','FRE','GER','HCR','HRM','ITA','ITE','LAC','LAW','MAN','SPA','STR','TEF','TOU','AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
+		$dan = array('ACC','AFE','BIG','BIS','BUS','CCA','CHI','CPP','CPU','CRI','ECO','ENG','EOT','EUR','FRE','GER','HCR','HRM','ITA','ITE','LAC','LAW','MAN','SPA','STR','TEF','TOU','AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
 		$kathryn = array('AAP','ACO','CDA','CEN','CGP','CMP','CNP','COM','CUP','DAC','FIL','FMM','FTU','ISM','MAA','MCP','MED','MFT','MIC','MDM','MMM','MMR','MPM','MUS','NSM','OBP','SAD','SWD','TES','VCA');
 		$kate = array('CPU','HES','HHS','HPS','HSW','PSY','SSC','SPO','SPT','SRS','SSP');
 		$celia = array('ECT','EDB','EEN','EGP','EMA','EME','EMS','ENV','IMS','MAC','MAM','MAR','MCO','MFC','MSO','PRJ','QTM','TFP','WDD','WEE','WEM','WSO','YEP','WCD','WDB','WDF','WSQ');
@@ -314,9 +314,9 @@ class block_course_contacts extends block_base {
 			$librarian_link = "";
 			$no_librarians = 0;
 
-			if (in_array($code, $hannah) || $code2 == "SPT014") {
-				$librarian_name = "Hannah Porter";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/hannah-porter.aspx";
+			if (in_array($code, $dan) || $code2 == "SPT014") {
+				$librarian_name = "Dan Scutt";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/dan-scutt.aspx";
 				$no_librarians	= 1;
 			}elseif(in_array($code, $kathryn)) {
 				$librarian_name = "Kathryn Ballard";
@@ -339,8 +339,8 @@ class block_course_contacts extends block_base {
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/fiona-mckichan.aspx";
 				$no_librarians	= 1;
 			}elseif(in_array($code, $share)) {
-				$librarian_name = "Hannah Porter";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/hannah-porter.aspx";
+				$librarian_name = "Dan Scutt";
+				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/dan-scutt.aspx";
 				$librarian_name2 = "Kate Stephenson";
 				$librarian_link2 = "http://portal.solent.ac.uk/library/essential-info/meet-team/kate-stephenson.aspx";
 				$no_librarians	= 2;
