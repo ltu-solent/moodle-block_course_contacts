@@ -101,7 +101,14 @@ echo $OUTPUT->heading($modname);
 if (count($messages) > 0) {
     echo html_writer::start_tag('div', array('class' => 'cocoemailmsgs'));
     foreach ($messages as $message) {
-        echo $OUTPUT->notification($message);
+// SU_AMEND START - Course contacts: Sent email notification
+		//echo $OUTPUT->notification($message);
+		if($message == 'The email was sent successfully.'){
+			echo $OUTPUT->notification($message, 'notifysuccess');
+		}else{
+			echo $OUTPUT->notification($message);
+		}
+// SU_AMEND END
     }
     $url = new moodle_url('/course/view.php?id='.$courseid);
     echo html_writer::link($url, get_string('return_to_course', 'block_course_contacts'), array('id' => 'returnlink'));

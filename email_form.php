@@ -44,7 +44,13 @@ class simple_email_form extends moodleform {
         get_string('sendanemail', 'block_course_contacts'));
 
         $mform->addElement('hidden', 'mailto', $mailto);
+// SU_AMEND START - Course contacts: Add missing email parameter
+		$mform->setType('mailto', PARAM_TEXT);
+// SU_AMEND END
         $mform->addElement('hidden', 'cid', $COURSE->id);
+// SU_AMEND START - Course contacts: Add missing email parameter
+		$mform->setType('cid', PARAM_TEXT);
+// SU_AMEND END
         $mform->addElement('static', 'emailinfo', '',
             str_replace('{recipient}', strtolower($mailto),
             get_string('emailinfo', 'block_course_contacts')));
