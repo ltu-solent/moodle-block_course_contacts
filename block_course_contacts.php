@@ -370,9 +370,9 @@ class block_course_contacts extends block_base {
 		}
 
 		// All participants
-		$participants_url = '/user/index.php?id='. $COURSE->id;
-		$content .= html_writer::link($participants_url, 'All participants');
-		$content .= html_writer::empty_tag('br');
+		// $participants_url = '/user/index.php?id='. $COURSE->id;
+		// $content .= html_writer::link($participants_url, 'All participants');
+		// $content .= html_writer::empty_tag('br');
 		//External examiners
 		$coursecode = substr($COURSE->shortname, 0, strpos($COURSE->shortname, "_"));
 		$external_url = $CFG->wwwroot ."/mod/data/view.php?d=159&mode=list&perpage=10&search=&sort=772&order=ASC&advanced=0&filter=1&advanced=1&f_772=&f_773=&f_774=&f_775=" . $coursecode;
