@@ -57,9 +57,9 @@
 
 .block.block_course_contacts .content .ccard .info .name {
     text-transform: capitalize;
-/* SSU_AMEND START - COURSE CONTACTS BLOCK */
+/* SU_AMEND START - Course contacts: Override font size */
 	/* font-size: 1.2em; */
-/* SSU_AMEND END */
+/* SU_AMEND END */
     display: inline;
 }
 

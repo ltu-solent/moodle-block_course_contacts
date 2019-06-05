@@ -197,15 +197,15 @@ class block_course_contacts extends block_base {
                     // Because the role search finds the custom name and the proper name in brackets.
                     if (!empty($contacts)) {
                         if ($shortened = strstr($role, '(', true)) {
-// SSU_AMEND START - ADD CLASS TO H5 TAG
+// SU_AMEND START - Course contacts: Add class to H5
 							//$content .= html_writer::tag('h5', trim($shortened));
 							$content .= html_writer::tag('h5', trim($shortened), array('class'=>'contact-role'));
-// SSU_AMEND END
+// SU_AMEND END
                         } else {
-// SSU_AMEND START - ADD CLASS TO H5 TAG
+// SU_AMEND START - Course contacts: Add class to H5
 							//$content .= html_writer::tag('h5', $role);
 							$content .= html_writer::tag('h5', $role, array('class'=>'contact-role'));
-// SSU_AMEND END
+// SU_AMEND END
                         }
                     }
                     // Now display each contact.
@@ -247,10 +247,10 @@ class block_course_contacts extends block_base {
                                     // $url = new moodle_url('/blocks/course_contacts/email.php', array(
                                         // 'touid' => $contact->id, 'cid'=>$COURSE->id));
                                 // } else {
-// SSU_AMEND START
+// SU_AMEND START - Course contacts: Email URL
 									//$url = 'mailto:'.strtolower($contact->email);
 									$url = new moodle_url('/blocks/course_contacts/email.php', array('touid'=>$contact->id, 'cid'=>$COURSE->id));
-// SSU_AMEND END
+// SU_AMEND END
                                 // }
                                 $content .= html_writer::link($url, html_writer::empty_tag('img', array(
                                     'src' => $OUTPUT->image_url('mail', 'block_course_contacts'),
@@ -292,7 +292,7 @@ class block_course_contacts extends block_base {
             }
         }
 
-// SSU_AMEND START - COURSE CONTACTS BLOCK
+// SU_AMEND START - Course contacts: Add librarian links
 		$content .= html_writer::empty_tag('hr');
 		//Librarians
 		$category = $DB->get_record('course_categories', array('id'=>$COURSE->category));
@@ -376,7 +376,7 @@ class block_course_contacts extends block_base {
 		$coursecode = substr($COURSE->shortname, 0, strpos($COURSE->shortname, "_"));
 		$external_url = $CFG->wwwroot ."/mod/data/view.php?d=159&mode=list&perpage=10&search=&sort=772&order=ASC&advanced=0&filter=1&advanced=1&f_772=&f_773=&f_774=&f_775=" . $coursecode;
 		$content .= html_writer::link($external_url, 'External examiners', array('target'=>'_blank'));
-// SSU_AMEND END
+// SU_AMEND END
 
         $content .= html_writer::end_tag('div');
 
