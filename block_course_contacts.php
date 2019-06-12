@@ -215,11 +215,19 @@ class block_course_contacts extends block_base {
                         $content .= html_writer::start_tag('div', array('class' => 'ccard'));
                         $content .= $OUTPUT->user_picture($contact, array('size' => 50));
                         $content .= html_writer::start_tag('div', array('class' => 'info'));
+
+
+
                         if ($contact->lastaccess > (time() - 300)) {
                             $status = 'online';
                         } else {
                             $status = 'offline';
                         }
+                        $content .= html_writer::empty_tag('img', array(
+                            'src' => $OUTPUT->image_url($status, 'block_course_contacts'),
+                            'title' => get_string($status, 'block_course_contacts'),
+                            'alt' => get_string($status, 'block_course_contacts'),
+                            'class' => 'status'));
                         $content .= html_writer::start_tag('div', array('class' => 'name '.$status));
 
                         // Check block configuration for use_altname to determine the name to display.
@@ -231,12 +239,12 @@ class block_course_contacts extends block_base {
                         }
 
                         $content .= html_writer::end_tag('div');
-                        $content .= html_writer::empty_tag('img', array(
-                            'src' => $OUTPUT->image_url($status, 'block_course_contacts'),
-                            'title' => get_string($status, 'block_course_contacts'),
-                            'alt' => get_string($status, 'block_course_contacts'),
-                            'class' => 'status'));
-                        $content .= html_writer::empty_tag('hr');
+                        // $content .= html_writer::empty_tag('img', array(
+                        //     'src' => $OUTPUT->image_url($status, 'block_course_contacts'),
+                        //     'title' => get_string($status, 'block_course_contacts'),
+                        //     'alt' => get_string($status, 'block_course_contacts'),
+                        //     'class' => 'status'));
+
                         $content .= html_writer::start_tag('div', array('class' => 'comms'));
 
                         // Unless they are us.
@@ -287,6 +295,7 @@ class block_course_contacts extends block_base {
                         //     $content .= substr(format_text($contact->description, FORMAT_HTML), 0, 199);
                         //     $content .= html_writer::end_tag('div');
                         // }
+                        $content .= html_writer::empty_tag('hr');
                         $content .= html_writer::end_tag('div');
                     }
                 }
@@ -294,7 +303,7 @@ class block_course_contacts extends block_base {
         }
 
 // SU_AMEND START - Course contacts: Add librarian links
-		$content .= html_writer::empty_tag('hr');
+		//$content .= html_writer::empty_tag('hr');
 		//Librarians
 		$category = $DB->get_record('course_categories', array('id'=>$COURSE->category));
 

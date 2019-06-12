@@ -91,3 +91,8 @@ div.cocoemailmsgs{
 div.cocoemailmsgs *{
     margin: 1em;
 }
+/* SU_AMEND START - Course contacts: Status */
+.status{
+  float:right;
+}
+/* SU_AMEND END */
