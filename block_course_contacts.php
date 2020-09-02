@@ -307,10 +307,13 @@ class block_course_contacts extends block_base {
 		//Librarians
 		$category = $DB->get_record('course_categories', array('id'=>$COURSE->category));
 
-		$dan = array('ACC','AFE','BIG','BIS','BUS','CCA','CHI','CPP','CPU','CRI','ECO','ENG','EOT','EUR','FRE','GER','HCR','HRM','ITA','ITE','LAC','LAW','MAN','SPA','STR','TEF','TOU','AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
-		$kathryn = array('AAP','ACO','CDA','CEN','CGP','CMP','CNP','COM','CUP','DAC','FIL','FMM','FTU','ISM','MAA','MCP','MED','MFT','MIC','MDM','MMM','MMR','MPM','MUS','NSM','OBP','SAD','SWD','TES','VCA');
-		$kate = array('CPU','HES','HHS','HPS','HSW','PSY','SSC','SPO','SPT','SRS','SSP');
-		$celia = array('ECT','EDB','EEN','EGP','EMA','EME','EMS','ENV','IMS','MAC','MAM','MAR','MCO','MFC','MSO','PRJ','QTM','TFP','WDD','WEE','WEM','WSO','YEP','WCD','WDB','WDF','WSQ');
+		$dan = array('ACC','AFE','BIG','BIS','BUS','CCA','CHI','CPP','CPU','CRI','ECO','ENG','EOT','EUR','FRE','GER','HCR','HRM','ITA','ITE','LAC','MAN','SPA','STR','TEF','TOU','AMC','CAC','CCA','CEM','CJO','CMF','CMJ','CMN','CMW','FCW','FEJ','FFM','MKT','NEJ');
+			
+		$kate = array('ADN','BIO','CRI','DCG','EDS','HCR','HES','HHS','HPS','HSW','PSY','SED','SOM','SPO','SPT','SRS','SSC','SSP');
+		
+		$kathryn = array('AAP','ACO','CDA','CEN','CGP','CMP','CNP','COM','CUP','DAC','FIL','FMM','FTU','ISM','MAA','MCP','MED','MFT','MIC','MDM','MMM','MMR','MPM','MUS','NSM','OBP','SAD','SWD','TES','VCA','EMS','PRJ','TFP','QTM','MFC','MCO','MAM','MAC','CMW','FDA','TSM');
+
+		$celia = array('ECT','EDB','EEN','EGP','EMA','EME','ENV','IMS', 'MAR','MSO','WDD','WEE','WEM','WSO','YEP','WCD','WDB','WDF','WSQ','LAW','LAC','MBU');
 		$susan = array('ARC','AVC','BPC','CON','DBE','DES','FAD','FAM','FFD','FMP','FMS','GRD','ICD','INT','MFS','MIT','PDM','SUR','TBE','VIC','VPF');
 		$fiona = array('EDU','PDU','FHEA');
 		$share = array('LEI');
@@ -328,27 +331,38 @@ class block_course_contacts extends block_base {
 				$librarian_name = "Dan Scutt";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/dan-scutt.aspx";
 				$no_librarians	= 1;
-			}elseif(in_array($code, $kathryn)) {
+			}
+			
+			if(in_array($code, $kathryn)) {
 				$librarian_name = "Kathryn Ballard";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/kathryn-ballard.aspx";
 				$no_librarians	= 1;
-			}elseif(in_array($code, $kate)) {
+			}
+			
+			if(in_array($code, $kate) || in_array($code2, array('EOT007','EOT008','EOT006'))) {
 				$librarian_name = "Kate Stephenson";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/kate-stephenson.aspx";
 				$no_librarians	= 1;
-			}elseif(in_array($code, $celia)) {
+			}
+			
+			if(in_array($code, $celia)) {
 				$librarian_name = "Celia Forrester";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/celia-forrester.aspx";
 				$no_librarians	= 1;
-			}elseif(in_array($code, $susan)) {
+			}
+			
+			if(in_array($code, $susan)) {
 				$librarian_name = "Susan Taylor";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/susan-taylor.aspx";
 				$no_librarians	= 1;
-			}elseif(in_array($code, $fiona)) {
+			}
+			
+			if(in_array($code, $fiona)) {
 				$librarian_name = "Fiona Mckichan";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/fiona-mckichan.aspx";
 				$no_librarians	= 1;
-			}elseif(in_array($code, $share)) {
+			}
+			if(in_array($code, $share)) {
 				$librarian_name = "Dan Scutt";
 				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/dan-scutt.aspx";
 				$librarian_name2 = "Kate Stephenson";
