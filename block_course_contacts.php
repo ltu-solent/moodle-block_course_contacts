@@ -318,9 +318,9 @@ class block_course_contacts extends block_base {
 		$fiona = array('EDU','PDU','FHEA');
 		$share = array('LEI');
 
-		$catname = strtolower('x'.$category->name);
+		$catname = strtolower('x'.$category->idnumber);
 
-		if(strpos($catname, 'unit pages') !== false){
+		if(strpos($catname, 'modules_') !== false){
 			$code = substr($COURSE->shortname, 0, 3);
 			$code2 = substr($COURSE->shortname, 0, 6);
 			$librarian_name = "";
