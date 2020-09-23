@@ -329,44 +329,44 @@ class block_course_contacts extends block_base {
 
 			if (in_array($code, $dan) || $code2 == "SPT014") {
 				$librarian_name = "Dan Scutt";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/dan-scutt.aspx";
+				$librarian_link = "https://libguides.solent.ac.uk/prf.php?account_id=133941";
 				$no_librarians	= 1;
 			}
 			
 			if(in_array($code, $kathryn)) {
 				$librarian_name = "Kathryn Ballard";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/kathryn-ballard.aspx";
+				$librarian_link = "https://libguides.solent.ac.uk/prf.php?account_id=133938";
 				$no_librarians	= 1;
 			}
 			
 			if(in_array($code, $kate) || in_array($code2, array('EOT007','EOT008','EOT006'))) {
 				$librarian_name = "Kate Stephenson";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/kate-stephenson.aspx";
+				$librarian_link = "https://libguides.solent.ac.uk/prf.php?account_id=43273";
 				$no_librarians	= 1;
 			}
 			
 			if(in_array($code, $celia)) {
 				$librarian_name = "Celia Forrester";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/celia-forrester.aspx";
+				$librarian_link = "https://libguides.solent.ac.uk/prf.php?account_id=133939";
 				$no_librarians	= 1;
 			}
 			
 			if(in_array($code, $susan)) {
 				$librarian_name = "Susan Taylor";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/susan-taylor.aspx";
+				$librarian_link = "https://libguides.solent.ac.uk/prf.php?account_id=133936";
 				$no_librarians	= 1;
 			}
 			
 			if(in_array($code, $fiona)) {
 				$librarian_name = "Fiona Mckichan";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/fiona-mckichan.aspx";
+				$librarian_link = "https://libguides.solent.ac.uk/prf.php?account_id=134647";
 				$no_librarians	= 1;
 			}
 			if(in_array($code, $share)) {
 				$librarian_name = "Dan Scutt";
-				$librarian_link = "http://portal.solent.ac.uk/library/essential-info/meet-team/dan-scutt.aspx";
+				$librarian_link = "https://libguides.solent.ac.uk/prf.php?account_id=133941";
 				$librarian_name2 = "Kate Stephenson";
-				$librarian_link2 = "http://portal.solent.ac.uk/library/essential-info/meet-team/kate-stephenson.aspx";
+				$librarian_link2 = "https://libguides.solent.ac.uk/prf.php?account_id=43273";
 				$no_librarians	= 2;
 			}
 
