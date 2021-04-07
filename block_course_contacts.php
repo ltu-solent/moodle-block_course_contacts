@@ -246,17 +246,24 @@ class block_course_contacts extends block_base {
                                 $content .= $contact->alternatename;
                             } else {
                                 // Use first and last names and truncate as necessary.
+// SU_AMEND START - User full name
                                 // $content .= $this->shorten_name($contact->firstname)." ".$this->shorten_name($contact->lastname);
                                 $content .= $contact->firstname." ".$contact->lastname;
+// SU_AMEND END
                             }
 
                             $content .= html_writer::end_tag('div');
-                            $content .= html_writer::empty_tag('img', array(
-                                'src' => $OUTPUT->image_url($status, 'block_course_contacts'),
-                                'title' => get_string($status, 'block_course_contacts'),
-                                'alt' => get_string($status, 'block_course_contacts'),
-                                'class' => 'status'));
-                            $content .= html_writer::empty_tag('hr');
+// SU_AMEND START - Move status out of div for styling
+                            // $content .= html_writer::empty_tag('img', array(
+                                // 'src' => $OUTPUT->image_url($status, 'block_course_contacts'),
+                                // 'title' => get_string($status, 'block_course_contacts'),
+                                // 'alt' => get_string($status, 'block_course_contacts'),
+                                // 'class' => 'status'));
+// SU_AMEND END
+
+// SU_AMEND START - Move hr beneath each contact
+                            // $content .= html_writer::empty_tag('hr');
+// SU_AMEND END
                             $content .= html_writer::start_tag('div', array('class' => 'comms'));
 
                             // Unless they are us.
@@ -293,22 +300,56 @@ class block_course_contacts extends block_base {
                                         array());
                                 }
                             }
-
+							
+                            $content .= html_writer::end_tag('div');							
                             $content .= html_writer::end_tag('div');
+							
+// SU_AMEND START - Move status out of div for styling							
+							$content .= html_writer::start_tag('div', array('class' => 'status'));
+							$content .= html_writer::empty_tag('img', array(
+                                'src' => $OUTPUT->image_url($status, 'block_course_contacts'),
+                                'title' => get_string($status, 'block_course_contacts'),
+                                'alt' => get_string($status, 'block_course_contacts'),
+                                'class' => 'status'));
+							$content .= html_writer::end_tag('div');	
+// SU_AMEND END
+// SU_AMEND START - Don't display description					
+                            // if ($contact->description != ""
+                                // && ((!$isguest && $this->config->description == 1)
+                                // || ($isguest && $this->config->description_guest == 1))) {
+                                // $content .= html_writer::start_tag('div', array('class' => 'description'));
+                                // $content .= substr(format_text($contact->description, FORMAT_HTML), 0, 199);
+                                // $content .= html_writer::end_tag('div');
+                            // }
+// SU_AMEND END
                             $content .= html_writer::end_tag('div');
-                            if ($contact->description != ""
-                                && ((!$isguest && $this->config->description == 1)
-                                || ($isguest && $this->config->description_guest == 1))) {
-                                $content .= html_writer::start_tag('div', array('class' => 'description'));
-                                $content .= substr(format_text($contact->description, FORMAT_HTML), 0, 199);
-                                $content .= html_writer::end_tag('div');
-                            }
-                            $content .= html_writer::end_tag('div');
+// SU_AMEND START - Move hr beneath each contact
+							$content .= html_writer::empty_tag('hr');
+// SU_AMEND END
                         }
                     }
                 }
             }
         }
+
+// SU_AMEND START - Course contacts: Add librarian links
+		global $DB, $CFG;
+		//Librarians
+		$category = $DB->get_record('course_categories', array('id'=>$COURSE->category));
+		$catname = strtolower('x'.$category->idnumber);
+
+		if(strpos($catname, 'modules_') !== false){			
+			$external_url = "https://libguides.solent.ac.uk/c.php?g=689476";
+			$content .= html_writer::link($external_url, 'Information Librarian Support', array('target'=>'_blank'));
+			$content .= html_writer::empty_tag('br');
+			
+			//External examiners
+			$coursecode = substr($COURSE->shortname, 0, strpos($COURSE->shortname, "_"));
+			$external_url = $CFG->wwwroot ."/mod/data/view.php?d=159&mode=list&perpage=10&search=&sort=772&order=ASC&advanced=0&filter=1&advanced=1&f_772=&f_773=&f_774=&f_775=" . $coursecode;
+			$content .= html_writer::link($external_url, 'External examiners', array('target'=>'_blank'));
+		}		
+// SU_AMEND END
+
         $content .= html_writer::end_tag('div');
 
         $this->content->text = $content;

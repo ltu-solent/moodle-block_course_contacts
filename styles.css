@@ -50,6 +50,9 @@
     height: auto;
     display: block;
     overflow: hidden;
+/* SU_AMEND START */
+	float: left;
+/* SU_AMEND END */
 }
 
 .block.block_course_contacts .content .ccard .info .name {
@@ -76,6 +79,16 @@
     margin-right: 3px;
 
 }
+
+/* SU_AMEND START */
+.block.block_course_contacts .content .ccard .aabtn {
+	float: left;
+}
+
+.block.block_course_contacts .content .ccard .status {
+	float: right;
+}
+/* SU_AMEND END */
 
 div.cocoemailmsgs {
     text-align: center;
