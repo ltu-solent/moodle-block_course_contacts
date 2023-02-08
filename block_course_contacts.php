@@ -343,11 +343,17 @@ class block_course_contacts extends block_base {
 			$content .= html_writer::link($external_url, 'Information Librarian Support', array('target'=>'_blank'));
 			$content .= html_writer::empty_tag('br');
 
+            // Careers advisors.
+            $content .= html_writer::link(
+                new moodle_url('/careersadvisors'),
+                'Careers Advisors'
+            ) . html_writer::empty_tag('br');
+
             // External examiners.
             $coursecode = substr($COURSE->shortname, 0, strpos($COURSE->shortname, "_"));
             $oldurl = $CFG->wwwroot . "/mod/data/view.php?d=159&mode=list&perpage=10&search=&sort=772&order=ASC&advanced=0&filter=1" .
                 "&advanced=1&f_772=&f_773=&f_774=&f_775=" . $coursecode;
-            $newurl = new moodle_url('/course/view.php', ['id' => '6152', 'section' => '3']);
+            $newurl = new moodle_url('/externalexaminers');
             $external_url = $newurl;
             $content .= html_writer::link($external_url, 'External examiners', array('target'=>'_blank'));
 		}
