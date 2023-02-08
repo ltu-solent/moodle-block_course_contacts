@@ -342,12 +342,15 @@ class block_course_contacts extends block_base {
 			$external_url = "https://libguides.solent.ac.uk/c.php?g=689476";
 			$content .= html_writer::link($external_url, 'Information Librarian Support', array('target'=>'_blank'));
 			$content .= html_writer::empty_tag('br');
-			
-			//External examiners
-			$coursecode = substr($COURSE->shortname, 0, strpos($COURSE->shortname, "_"));
-			$external_url = $CFG->wwwroot ."/mod/data/view.php?d=159&mode=list&perpage=10&search=&sort=772&order=ASC&advanced=0&filter=1&advanced=1&f_772=&f_773=&f_774=&f_775=" . $coursecode;
-			$content .= html_writer::link($external_url, 'External examiners', array('target'=>'_blank'));
-		}		
+
+            // External examiners.
+            $coursecode = substr($COURSE->shortname, 0, strpos($COURSE->shortname, "_"));
+            $oldurl = $CFG->wwwroot . "/mod/data/view.php?d=159&mode=list&perpage=10&search=&sort=772&order=ASC&advanced=0&filter=1" .
+                "&advanced=1&f_772=&f_773=&f_774=&f_775=" . $coursecode;
+            $newurl = new moodle_url('/course/view.php', ['id' => '6152', 'section' => '3']);
+            $external_url = $newurl;
+            $content .= html_writer::link($external_url, 'External examiners', array('target'=>'_blank'));
+		}
 // SU_AMEND END
 
         $content .= html_writer::end_tag('div');
