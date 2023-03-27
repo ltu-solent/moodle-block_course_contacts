@@ -23,7 +23,6 @@
  */
 
 namespace block_course_contacts\privacy;
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Privacy Subsystem for block_course_contacts implementing null_provider.
@@ -44,7 +43,7 @@ class provider implements
      *
      * @return  string
      */
-    public static function _get_reason() {
+    public static function get_reason(): string {
         return 'privacy:metadata';
     }
 }
