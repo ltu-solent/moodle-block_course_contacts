@@ -140,7 +140,7 @@ class block_course_contacts extends block_base {
      * @return $this->content
      */
     public function get_content() {
-        global $COURSE, $OUTPUT, $USER;
+        global $CFG, $COURSE, $OUTPUT, $USER;
 
         // If the user hasnt configured the plugin, use the site-configured settings as the defaults.
         if (empty($this->config)) {
@@ -164,6 +164,8 @@ class block_course_contacts extends block_base {
         if ($this->content !== null) {
             return $this->content;
         }
+
+        $messaging = !empty($CFG->messaging);
 
         $this->content = new stdClass;
 
@@ -274,8 +276,8 @@ class block_course_contacts extends block_base {
                                         ['target' => '_blank']);
                                 }
                                 // What about messages?
-                                if ((!$isguest && $this->config->message == 1)
-                                    || ($isguest && $this->config->message_guest == 1)) {
+                                if ((!$isguest && $this->config->message == 1 && $messaging)
+                                    || ($isguest && $this->config->message_guest == 1 && $messaging)) {
                                     $url = new moodle_url('/message/index.php', ['id' => $contact->id]);
                                     $cardcontent .= html_writer::link($url, html_writer::empty_tag('img', [
                                         'src' => $OUTPUT->image_url('message', 'block_course_contacts'),
