@@ -107,6 +107,11 @@ class block_course_contacts_edit_form extends block_edit_form {
         $mform->addHelpButton('config_use_altname', 'how_altname_works', 'block_course_contacts');
         $mform->setAdvanced('config_use_altname');
 
+        $editoroptions = ['maxfiles' => 0, 'noclean' => true, 'context' => $this->block->context];
+        $mform->addElement('editor', 'footercontent', get_string('footercontent', 'block_course_contacts'), '', $editoroptions);
+        $mform->addHelpButton('footercontent', 'footercontent', 'block_course_contacts');
+        $mform->setAdvanced('footercontent');
+
         $mform->addElement('selectyesno', 'config_group', get_string('group', 'block_course_contacts'));
         $mform->setDefault('config_group', 0);
         $mform->setType('config_group', PARAM_INT);

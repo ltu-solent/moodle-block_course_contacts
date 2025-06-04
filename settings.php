@@ -100,6 +100,9 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configselect('block_course_contacts/group',
         get_string('group', 'block_course_contacts'), '', 0, $yesno));
 
+    $settings->add(new admin_setting_confightmleditor('block_course_contacts/footercontent',
+        get_string('footercontent', 'block_course_contacts'), get_string('footercontent_help', 'block_course_contacts'), ''));
+
     // Toggle on/off show user picture.
     $settings->add(new admin_setting_configselect('block_course_contacts/showuserpicture',
         get_string('showuserpicture', 'block_course_contacts'), '', 1, $yesno));

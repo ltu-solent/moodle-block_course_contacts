@@ -42,6 +42,8 @@ $string['display'] = 'Display';
 
 $string['email'] = 'Email';
 
+$string['footercontent'] = 'Footer content';
+$string['footercontent_help'] = 'Extra content that appears at the bottom of the block';
 $string['from'] = 'From';
 
 $string['group'] = 'Display group view selector';

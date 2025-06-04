@@ -26,6 +26,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use core\output\html_writer;
+
 /**
  * Block Course Contacts class definition.
  *
@@ -325,6 +327,18 @@ class block_course_contacts extends block_base {
                     $content .= implode(html_writer::empty_tag('hr'), $contactcards);
                 }
             }
+        }
+
+        $footercontent = '';
+        $defaultfootercontent = get_config('block_course_contacts', 'footercontent');
+        if (isset($this->config->footercontent) && !empty($this->config->footercontent)) {
+            $footercontent = $this->config->footercontent;
+        } else if ($defaultfootercontent) {
+            $footercontent = $defaultfootercontent;
+        }
+        if (!empty($footercontent)) {
+            $content .= html_writer::empty_tag('hr');
+            $content .= html_writer::tag('div', format_text($footercontent, FORMAT_HTML));
         }
         $content .= html_writer::end_tag('div');
 
