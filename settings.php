@@ -41,7 +41,7 @@ if ($ADMIN->fulltree) {
 
     $yesno = [
         0 => get_string('no'),
-        1 => get_string('yes')
+        1 => get_string('yes'),
     ];
     $settings->add(new admin_setting_configselect('block_course_contacts/email',
         get_string('email', 'block_course_contacts'), '', 1, $yesno));
@@ -85,7 +85,7 @@ if ($ADMIN->fulltree) {
     $sortby = [
         0 => get_string('alphabetical', 'block_course_contacts'),
         1 => get_string('recentlyactive', 'block_course_contacts'),
-        2 => get_string('dateenrolled', 'block_course_contacts')
+        2 => get_string('dateenrolled', 'block_course_contacts'),
     ];
 
     $settings->add(new admin_setting_configselect('block_course_contacts/sortby',

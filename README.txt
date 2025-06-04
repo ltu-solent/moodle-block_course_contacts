@@ -16,8 +16,8 @@ The block also shows whether the user has been active in the last five minutes.
 Changelog
 **********
 v3.9 - Remove old/unused references to emails and quickmail. Apply fixes for identified issues and pull requests
-	Thanks to mkpelletier, VladimirSavitchi, bel-omahoney, bradnielsen2981 and others
-	With apologies for the large gap between reviews and updates!
+     Thanks to mkpelletier, VladimirSavitchi, bel-omahoney, bradnielsen2981 and others
+     With apologies for the large gap between reviews and updates!
 v3.5.0.1 - Add Privacy API
 v3.2 - Add missing capability language strings (thanks SK-Unikent)
        Add profile description as a display option

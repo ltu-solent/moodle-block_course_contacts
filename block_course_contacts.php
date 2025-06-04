@@ -51,7 +51,7 @@ class block_course_contacts extends block_base {
      * @return array
      */
     public function applicable_formats() {
-        return array('all' => true, 'mod' => false, 'tag' => false, 'my' => false);
+        return ['all' => true, 'mod' => false, 'tag' => false, 'my' => false];
     }
 
     /**
@@ -59,7 +59,6 @@ class block_course_contacts extends block_base {
      *
      * @param int $roleid (can also be an array of ints!)
      * @param context $context
-     * @param mixed $roleid ID number of role being displayed
      * @param bool $parent if true, get list of users assigned in higher context too
      * @param string $fields fields from user (u.) , role assignment (ra) or role (r.)
      * @param string $sort sort from user (u.) , role assignment (ra) or role (r.)
@@ -72,7 +71,7 @@ class block_course_contacts extends block_base {
      */
     private function get_role_users($roleid, $context, $parent = false, $fields = '',
             $sort = 'u.lastname, u.firstname', $group = '',
-            $limitfrom = '', $limitnum = '', $extrawheretest = '', $whereparams = array()) {
+            $limitfrom = '', $limitnum = '', $extrawheretest = '', $whereparams = []) {
         global $DB;
 
         if (empty($fields)) {
@@ -95,7 +94,7 @@ class block_course_contacts extends block_base {
             list($rids, $params) = $DB->get_in_or_equal($roleid, SQL_PARAMS_QM);
             $roleselect = "AND ra.roleid $rids";
         } else {
-            $params = array();
+            $params = [];
             $roleselect = '';
         }
 
@@ -144,7 +143,7 @@ class block_course_contacts extends block_base {
         // If the user hasnt configured the plugin, use the site-configured settings as the defaults.
         if (empty($this->config)) {
             $globalconfig = get_config('block_course_contacts');
-            // Unset config not related to default set
+            // Unset config not related to default set.
             unset($globalconfig->autocreateoninfopage);
             $this->config = $globalconfig;
         }
@@ -170,7 +169,7 @@ class block_course_contacts extends block_base {
 
         // Find the roles available on this course.
         $roles = array_reverse(get_default_enrol_roles($context, null), true);
-        $content .= html_writer::start_tag('div', array('class' => 'box'));
+        $content .= html_writer::start_tag('div', ['class' => 'box']);
 
         // How are we going to sort the contacts?
         $orderby = 'u.lastname'; // Default.
@@ -207,7 +206,7 @@ class block_course_contacts extends block_base {
             $content .= groups_print_course_menu($COURSE, $url, true);
         }
 
-        $clist = array();
+        $clist = [];
         foreach ($roles as $key => $role) {
             $att = 'role_'.$key;
             if (!empty($this->config->$att)) {
@@ -227,20 +226,20 @@ class block_course_contacts extends block_base {
                     foreach ($contacts as $contact) {
                         if (!in_array($contact->id, $clist)) {
                             $clist[] = $contact->id;
-                            $cardcontent = html_writer::start_tag('div', array('class' => 'ccard'));
+                            $cardcontent = html_writer::start_tag('div', ['class' => 'ccard']);
 
                             // Show user picture only if enabled in settings.
                             if (!empty($this->config->showuserpicture)) {
-                                $cardcontent .= $OUTPUT->user_picture($contact, array('size' => 50));
+                                $cardcontent .= $OUTPUT->user_picture($contact, ['size' => 50]);
                             }
 
-                            $cardcontent .= html_writer::start_tag('div', array('class' => 'info'));
+                            $cardcontent .= html_writer::start_tag('div', ['class' => 'info']);
                             if ($contact->lastaccess > (time() - 300)) {
                                 $status = 'online';
                             } else {
                                 $status = 'offline';
                             }
-                            $cardcontent .= html_writer::start_tag('div', array('class' => 'name '.$status));
+                            $cardcontent .= html_writer::start_tag('div', ['class' => 'name '.$status]);
 
                             // Check block configuration for use_altname to determine the name to display.
                             if (isset($this->config->use_altname)
@@ -253,12 +252,12 @@ class block_course_contacts extends block_base {
                             }
 
                             $cardcontent .= html_writer::end_tag('div');
-                            $cardcontent .= html_writer::empty_tag('img', array(
+                            $cardcontent .= html_writer::empty_tag('img', [
                                 'src' => $OUTPUT->image_url($status, 'block_course_contacts'),
                                 'title' => get_string($status, 'block_course_contacts'),
                                 'alt' => get_string($status, 'block_course_contacts'),
-                                'class' => 'status'));
-                            $cardcontent .= html_writer::start_tag('div', array('class' => 'comms'));
+                                'class' => 'status']);
+                            $cardcontent .= html_writer::start_tag('div', ['class' => 'comms']);
 
                             // Unless they are us.
                             if ($USER->id != $contact->id) {
@@ -266,32 +265,32 @@ class block_course_contacts extends block_base {
                                 if ((!$isguest && $this->config->email == 1)
                                     || ($isguest && $this->config->email_guest == 1)) {
                                     $url = 'mailto:'.strtolower($contact->email);
-                                    $cardcontent .= html_writer::link($url, html_writer::empty_tag('img', array(
+                                    $cardcontent .= html_writer::link($url, html_writer::empty_tag('img', [
                                         'src' => $OUTPUT->image_url('mail', 'block_course_contacts'),
                                         'title' => get_string('email', 'block_course_contacts').' '.$contact->firstname,
-                                        'alt' => get_string('email', 'block_course_contacts').' '.$contact->firstname)),
-                                        array('target' => '_blank'));
+                                        'alt' => get_string('email', 'block_course_contacts').' '.$contact->firstname]),
+                                        ['target' => '_blank']);
                                 }
                                 // What about messages?
                                 if ((!$isguest && $this->config->message == 1)
                                     || ($isguest && $this->config->message_guest == 1)) {
-                                    $url = new moodle_url('/message/index.php', array('id' => $contact->id));
-                                    $cardcontent .= html_writer::link($url, html_writer::empty_tag('img', array(
+                                    $url = new moodle_url('/message/index.php', ['id' => $contact->id]);
+                                    $cardcontent .= html_writer::link($url, html_writer::empty_tag('img', [
                                         'src' => $OUTPUT->image_url('message', 'block_course_contacts'),
                                         'title' => get_string('message', 'block_course_contacts').' '.$contact->firstname,
-                                        'alt' => get_string('message', 'block_course_contacts').' '.$contact->firstname)),
-                                        array('target' => '_blank'));
+                                        'alt' => get_string('message', 'block_course_contacts').' '.$contact->firstname]),
+                                        ['target' => '_blank']);
                                 }
                                 // And phone numbers?
                                 if ($contact->phone1 != ""
                                     && ((!$isguest && $this->config->phone == 1)
                                     || ($isguest && $this->config->phone_guest == 1))) {
                                     $url = 'tel:'.$contact->phone1;
-                                    $cardcontent .= html_writer::link($url, html_writer::empty_tag('img', array(
+                                    $cardcontent .= html_writer::link($url, html_writer::empty_tag('img', [
                                         'src' => $OUTPUT->image_url('phone', 'block_course_contacts'),
                                         'title' => get_string('phone', 'block_course_contacts').' '.$contact->phone1,
-                                        'alt' => get_string('phone', 'block_course_contacts').' '.$contact->phone1)),
-                                        array());
+                                        'alt' => get_string('phone', 'block_course_contacts').' '.$contact->phone1]),
+                                        []);
                                 }
                             }
 
@@ -300,7 +299,7 @@ class block_course_contacts extends block_base {
                             if ($contact->description != ""
                                 && ((!$isguest && $this->config->description == 1)
                                 || ($isguest && $this->config->description_guest == 1))) {
-                                $cardcontent .= html_writer::start_tag('div', array('class' => 'description'));
+                                $cardcontent .= html_writer::start_tag('div', ['class' => 'description']);
                                 $usercontext = context_user::instance($contact->id);
                                 $cardcontent .= substr(
                                     format_text(
@@ -342,6 +341,11 @@ class block_course_contacts extends block_base {
         return true;
     }
 
+    /**
+     * Controls global configurability of block.
+     *
+     * @return bool
+     */
     public function has_config() {
         return true;
     }

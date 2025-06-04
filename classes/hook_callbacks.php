@@ -19,7 +19,7 @@ namespace block_course_contacts;
 /**
  * Hook callbacks.
  *
- * @package     course_contacts
+ * @package     block_course_contacts
  * @author      Alexander Van der Bellen <alexandervanderbellen@catalyst-au.net>
  * @copyright   2025 Catalyst IT Australia
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

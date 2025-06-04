@@ -23,14 +23,15 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
-
+/**
+ * Callback for before_http_headers
+ *
+ * @return void
+ */
 function block_course_contacts_before_http_headers() {
     global $PAGE, $DB;
 
-    // Only display for course-info page
-    // TODO: Store page type(s) allowed for as a global setting?
+    // Only display for course-info page.
     if ($PAGE->pagetype !== 'course-info') {
         return;
     }
@@ -44,7 +45,7 @@ function block_course_contacts_before_http_headers() {
     // Only display one instance of this block - if one has been set up for this page already, do not display it.
     $blockexists = $DB->record_exists('block_instances', [
         'parentcontextid' => $PAGE->context->id,
-        'blockname' => 'course_contacts'
+        'blockname' => 'course_contacts',
     ]);
     if ($blockexists) {
         return;

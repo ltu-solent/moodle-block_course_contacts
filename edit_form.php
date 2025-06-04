@@ -41,7 +41,7 @@ class block_course_contacts_edit_form extends block_edit_form {
 
     /**
      * Function used to define the settings form.
-     * @param array $mform
+     * @param \MoodleQuickform $mform
      */
     protected function specific_definition($mform) {
 
@@ -50,19 +50,19 @@ class block_course_contacts_edit_form extends block_edit_form {
 
         $mform->addElement('selectyesno', 'config_email', get_string('email', 'block_course_contacts'));
         $mform->setDefault('config_email', 1);
-        $mform->setType('config_email', PARAM_INTEGER);
+        $mform->setType('config_email', PARAM_INT);
 
         $mform->addElement('selectyesno', 'config_message', get_string('message', 'block_course_contacts'));
         $mform->setDefault('config_message', 1);
-        $mform->setType('config_message', PARAM_INTEGER);
+        $mform->setType('config_message', PARAM_INT);
 
         $mform->addElement('selectyesno', 'config_phone', get_string('phone', 'block_course_contacts'));
         $mform->setDefault('config_phone', 0);
-        $mform->setType('config_phone', PARAM_INTEGER);
+        $mform->setType('config_phone', PARAM_INT);
 
         $mform->addElement('selectyesno', 'config_description', get_string('description', 'block_course_contacts'));
         $mform->setDefault('config_description', 0);
-        $mform->setType('config_description', PARAM_INTEGER);
+        $mform->setType('config_description', PARAM_INT);
 
         // This section configures which contact methods should be displayed for guest users.
         $mform->addElement('header', 'configheader', get_string('methodguest', 'block_course_contacts'));
@@ -90,20 +90,20 @@ class block_course_contacts_edit_form extends block_edit_form {
         // This section gives options of how to display contacts.
         $mform->addElement('header', 'configheader', get_string('display', 'block_course_contacts'));
 
-        $sortby = array(0 => get_string('alphabetical', 'block_course_contacts'),
+        $sortby = [0 => get_string('alphabetical', 'block_course_contacts'),
                         1 => get_string('recentlyactive', 'block_course_contacts'),
-                        2 => get_string('dateenrolled', 'block_course_contacts'));
+                        2 => get_string('dateenrolled', 'block_course_contacts')];
         $mform->addElement('select', 'config_sortby', get_string('sortby', 'block_course_contacts'), $sortby);
         $mform->setDefault('config_sortby', 0);
 
         $mform->addElement('selectyesno', 'config_inherit', get_string('inherit', 'block_course_contacts'));
         $mform->setDefault('config_inherit', 0);
-        $mform->setType('config_inherit', PARAM_INTEGER);
+        $mform->setType('config_inherit', PARAM_INT);
         $mform->setAdvanced('config_inherit');
 
         $mform->addElement('selectyesno', 'config_use_altname', get_string('use_altname', 'block_course_contacts'));
         $mform->setDefault('config_use_altname', 0);
-        $mform->setType('config_use_altname', PARAM_INTEGER);
+        $mform->setType('config_use_altname', PARAM_INT);
         $mform->addHelpButton('config_use_altname', 'how_altname_works', 'block_course_contacts');
         $mform->setAdvanced('config_use_altname');
 
@@ -121,7 +121,7 @@ class block_course_contacts_edit_form extends block_edit_form {
             if ($key = 3) {
                 $mform->setDefault('config_role_'.$key, 1);
             }
-            $mform->setType('config_role_'.$key, PARAM_INTEGER);
+            $mform->setType('config_role_'.$key, PARAM_INT);
         }
     }
 }
