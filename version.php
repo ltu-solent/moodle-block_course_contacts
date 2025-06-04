@@ -28,9 +28,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2020050105;  // YYYYMMDDHH (year, month, day, 24-hr time).
-$plugin->requires = 2019052000; // YYYYMMDDHH (This is the release version for Moodle 2.0).
-$plugin->release = '3.9.0.1'; // Plugin release.
+$plugin->version = 2025060300;  // YYYYMMDDHH (year, month, day, 24-hr time).
+$plugin->requires = 2024100700; // YYYYMMDDHH (This is the release version for Moodle 2.0).
+$plugin->release = '4.5.0.0'; // Plugin release.
 $plugin->maturity   = MATURITY_STABLE;
 $plugin->component = 'block_course_contacts'; // Full name of the plugin (used for diagnostics).
-$plugin->supported = [401, 405];
+$plugin->supported = [405, 500];
