@@ -220,9 +220,9 @@ class block_course_contacts extends block_base {
 
                     if (!empty($contacts)) {
                         if ($shortened = strstr($role, '(', true)) {
-                            $content .= html_writer::tag('h5', trim($shortened));
+                            $content .= html_writer::tag('h5', trim($shortened), ['class' => 'pt-2']);
                         } else {
-                            $content .= html_writer::tag('h5', $role);
+                            $content .= html_writer::tag('h5', $role, ['class' => 'pt-2']);
                         }
                     }
                     // Now display each contact.
