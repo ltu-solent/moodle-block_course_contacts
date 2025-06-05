@@ -328,6 +328,7 @@ class block_course_contacts extends block_base {
                     }
                     $content .= implode(html_writer::empty_tag('hr'), $contactcards);
                 }
+                $content .= html_writer::empty_tag('hr');
             }
         }
 
@@ -339,7 +340,6 @@ class block_course_contacts extends block_base {
             $footercontent = $defaultfootercontent;
         }
         if (!empty($footercontent)) {
-            $content .= html_writer::empty_tag('hr');
             $content .= html_writer::tag('div', format_text($footercontent, FORMAT_HTML));
         }
         $content .= html_writer::end_tag('div');
