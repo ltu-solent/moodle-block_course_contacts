@@ -30,21 +30,21 @@
     height: 2px;
 }
 
-.block.block_course_contacts .content .ccard {
+.block_course_contacts .ccard {
     clear: both;
     min-height: 50px;
     height: auto;
     margin: 3px 0 0 -4px;
 }
 
-.block.block_course_contacts .content .ccard .userpicture {
+.block_course_contacts .ccard .userpicture {
     float: left;
     width: 50px;
     height: 50px;
 }
 
 
-.block.block_course_contacts .content .ccard .info {
+.block_course_contacts .ccard .info {
     position: relative;
     min-height: 50px;
     height: auto;
@@ -52,27 +52,27 @@
     overflow: hidden;
 }
 
-.block.block_course_contacts .content .ccard .info .name {
+.block_course_contacts .ccard .info .name {
     display: inline;
 }
 
-.block.block_course_contacts .content .ccard .info .status {
+.block_course_contacts .ccard .info .status {
     position: relative;
     float: right;
     display: inline;
     margin: 4px 0 0 0;
 }
 
-.block.block_course_contacts .content .ccard .info .comms {
+.block_course_contacts .ccard .info .comms {
     color: #444;
     margin-top: 6px;
 }
-.block.block_course_contacts .content .ccard .info .description {
+.block_course_contacts .ccard .info .description {
     color: #444;
     margin-top: 6px;
 }
 
-.block.block_course_contacts .content .ccard .info .comms img {
+.block_course_contacts .ccard .info .comms img {
     margin-right: 3px;
 
 }
@@ -85,7 +85,11 @@ div.cocoemailmsgs * {
     margin: 1em;
 }
 
-.block.block_course_contacts .box > hr {
+.block_course_contacts .box > hr {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.block_course_contacts .groupselector {
+    display: inherit;
 }
